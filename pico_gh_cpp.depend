@@ -1,0 +1,79 @@
+# depslib dependency file v1.0
+1638698478 source:c:\users\user\dropbox\programming\pico_gh_cpp\main.cpp
+	<stdio.h>
+	<iostream>
+	<algorithm>
+	<fstream>
+	<string>
+	"windows.h"
+	<conio.h>
+	"ps3000aApi.h"
+	<sys/types.h>
+	<string.h>
+	<termios.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<unistd.h>
+	<stdlib.h>
+	<libps3000a-1.1/ps3000aApi.h>
+	<libps3000a-1.1/PicoStatus.h>
+
+1634968912 c:\users\user\dropbox\programming\pico_gh_cpp\ps3000aapi.h
+	<stdint.h>
+	"PicoStatus.h"
+
+1631019962 c:\users\user\dropbox\programming\pico_gh_cpp\picostatus.h
+	<stdint.h>
+
+1640342083 source:c:\users\boss\dropbox\programming\pico_gh_cpp\main.cpp
+	<stdio.h>
+	<iostream>
+	<algorithm>
+	<fstream>
+	<string>
+	"windows.h"
+	<conio.h>
+	"ps3000aApi.h"
+	<sys/types.h>
+	<string.h>
+	<termios.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<unistd.h>
+	<stdlib.h>
+	<libps3000a-1.1/ps3000aApi.h>
+	<libps3000a-1.1/PicoStatus.h>
+
+1634968912 c:\users\boss\dropbox\programming\pico_gh_cpp\ps3000aapi.h
+	<stdint.h>
+	"PicoStatus.h"
+
+1631019962 c:\users\boss\dropbox\programming\pico_gh_cpp\picostatus.h
+	<stdint.h>
+
+1640356192 source:e:\pico_gh_cpp\main.cpp
+	<stdio.h>
+	<iostream>
+	<algorithm>
+	<fstream>
+	<string>
+	"windows.h"
+	<conio.h>
+	"ps3000aApi.h"
+	<sys/types.h>
+	<string.h>
+	<termios.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<unistd.h>
+	<stdlib.h>
+	<libps3000a-1.1/ps3000aApi.h>
+	<libps3000a-1.1/PicoStatus.h>
+
+1634968912 e:\pico_gh_cpp\ps3000aapi.h
+	<stdint.h>
+	"PicoStatus.h"
+
+1631019962 e:\pico_gh_cpp\picostatus.h
+	<stdint.h>
+
