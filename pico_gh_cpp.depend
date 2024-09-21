@@ -77,3 +77,28 @@
 1631019962 e:\pico_gh_cpp\picostatus.h
 	<stdint.h>
 
+1726930880 source:e:\programming\accumulation-with-picoscope-3206a\main.cpp
+	<iostream>
+	<algorithm>
+	<fstream>
+	<string>
+	"windows.h"
+	<conio.h>
+	"ps3000aApi.h"
+	<sys/types.h>
+	<string.h>
+	<termios.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<unistd.h>
+	<stdlib.h>
+	<libps3000a-1.1/ps3000aApi.h>
+	<libps3000a-1.1/PicoStatus.h>
+
+1726926723 e:\programming\accumulation-with-picoscope-3206a\ps3000aapi.h
+	<stdint.h>
+	"PicoStatus.h"
+
+1726926723 e:\programming\accumulation-with-picoscope-3206a\picostatus.h
+	<stdint.h>
+

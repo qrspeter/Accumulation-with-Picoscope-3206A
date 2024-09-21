@@ -1,0 +1,7 @@
+g++.exe -Wall -fexceptions -g  -c E:\programming\Accumulation-with-Picoscope-3206A\main.cpp -o obj\Debug\main.o
+g++.exe  -o bin\Debug\pico_gh_cpp.exe obj\Debug\main.o   .\ps3000a.lib
+
+
+g++.exe -Wall -fexceptions -O2  -c E:\programming\Accumulation-with-Picoscope-3206A\main.cpp -o obj\Release\main.o
+g++.exe  -o bin\Release\pico_gh_cpp.exe obj\Release\main.o  -s  .\ps3000a.lib
+
