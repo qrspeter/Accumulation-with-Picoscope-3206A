@@ -4,7 +4,7 @@
 // конкретно 32-битный называется mingw-w64-install.exe, при установке надо указать х686.
 */
 
-// In block averaging the memory must be allocated one time and be in use.
+// In block averaging the memory must be allocated once and be in use.
 
 // error in c++: if (strlen(line) == 8 || line[3] != '4') - errors in first part
 // and if (strlen(line) >= 7)
@@ -124,7 +124,7 @@
 
 //#define __STDC_WANT_LIB_EXT1__ 1 // for scanf_s
 
-using namespace std;
+//using namespace std;
 
 /* Headers for Windows */
 #ifdef _WIN32 			// _WIN32 Defined for applications for Win32 and Win64.
@@ -135,7 +135,7 @@ using namespace std;
 
 #else
 #include <sys/types.h>
-#include <string.h>
+//#include <string.h>
 #include <termios.h>
 #include <sys/ioctl.h>
 #include <sys/types.h>
@@ -255,7 +255,7 @@ struct ps3000aSetting {
 // Peter. change to strings?
 char cFileName[30] = "Nrapidblock_average.txt"; // The name of the output file for averaging data.
 char cSettingFile[20] = "piqo_setting.dat"; // The name of the setting file.
-string settingFile("piqo_setting.ini"); // The name of the setting file.
+std::string settingFile("piqo_setting.ini"); // The name of the setting file.
 
 
 
@@ -888,7 +888,7 @@ void blockDataHandler(UNIT * unit, const char * text, int32_t offset, MODE mode)
 
 			if (mode == ANALOGUE || mode == MIXED)		// If we're doing analogue or MIXED
 			{
-				sampleCount = min(sampleCount, BUFFER_SIZE);
+				sampleCount = std::min(sampleCount, BUFFER_SIZE);
 
 				fopen_s(&fp, BlockFile, "w");
 
@@ -2198,7 +2198,7 @@ void setVoltages(UNIT * unit)
 			do
 			{
 				printf("Channel %c: ", 'A' + ch);
-				cin >> unit->channelSettings[ch].range;
+				std::cin >> unit->channelSettings[ch].range;
 //				fflush(stdin);
 //				scanf_s("%hd", &unit->channelSettings[ch].range);
 				// "h" modifier indicates that it's reading a short integer, which your variable choice just happens to be. So the "%hd" is necessary to write only two bytes (on most machines) instead of the 4 bytes that "%d" writes.
@@ -2242,7 +2242,7 @@ void setTimebase(UNIT * unit)
 	printf("0 -> 2 ns, 1 -> 4 ns, 2 -> 8 ns, 3 -> 16 ns, 4 -> 32 ns, ... max 2^32-1 -> ~ 68.7 s.\n ");
 
 	printf("Specify desired timebase: ");
-    cin >> timebase;
+    std::cin >> timebase;
 //	fflush(stdin);
 //	scanf_s("%lud", &timebase);
 
@@ -2360,7 +2360,7 @@ void setSignalGenerator(UNIT unit)
 			waveformSize = 0;
 
 			printf("Select a waveform file to load: ");
-            cin >> fileName;
+            std::cin >> fileName;
 //			scanf_s("%s", fileName, 128);
 
 			if (fopen_s(&fp, fileName, "r") == 0)
@@ -2399,7 +2399,7 @@ void setSignalGenerator(UNIT unit)
 					do
 					{
 						printf("\nEnter offset in uV: (0 to 2000000)\n"); // Ask user to enter DC offset level;
-						cin >> offset;
+						std::cin >> offset;
 //						scanf_s("%lu", &offset);
 					} while (offset < 0 || offset > 2000000);
 					break;
@@ -2435,7 +2435,7 @@ void setSignalGenerator(UNIT unit)
 			do
 			{
 				printf("\nEnter frequency in Hz: (1 to 1000000)\n");	// Ask user to enter signal frequency;
-				cin >> frequency;
+				std::cin >> frequency;
 //				scanf_s("%lf", &frequency);
 			} while (frequency <= 0 || frequency > 1000000);
 		}
@@ -2646,7 +2646,7 @@ void displaySettings(UNIT *unit)
 void changeParameters(UNIT *unit)
 {
 
-    char ch;
+    char ch = 0;
 	while (ch != 'X')
     {
 
@@ -2750,17 +2750,17 @@ void saveParameters()
 {
 // переместить запись в функцию сохранения настроек, чего просто так создавать при открытии?
 		// Load default setting and save them to file
-		ofstream fileSaveSet;
-		fileSaveSet.open (settingFile, ios::out | ios::binary);  // м.б. не хватает ("students.data", ios::binary)
+		std::ofstream fileSaveSet;
+		fileSaveSet.open (settingFile, std::ios::out | std::ios::binary);  // м.б. не хватает ("students.data", ios::binary)
 		if (fileSaveSet.is_open())  // или if (fset.is_open())
 		{
-            cout << "Settings are saving into " << settingFile << ".\n";
+            std::cout << "Settings are saving into " << settingFile << ".\n";
             fileSaveSet.write(reinterpret_cast<char*> (&mySetting), sizeof(ps3000aSetting)); // (char*)  or sizeof(ps3000aSetting
             fileSaveSet.close();
 		}
         else
         {
-            cout << "error writing setting file. " << endl;
+            std::cout << "error writing setting file. " << std::endl;
         }
 
 }
@@ -2824,20 +2824,20 @@ PICO_STATUS openDevice(UNIT *unit)
 // fset.getline(buff, 50); // считали строку из файла
 
 // https://stackoverflow.com/questions/5844309/trying-to-use-int-in-getline
-// Note that just inputting std::cin directly into totalquestions does not work; it will leave the trailing '\n' character in the buffer,
-// which will desynchronize all of the following input. It's possible to avoid this by adding a call to std::cin.ignore,
+// Note that just inputting std::std::cin directly into totalquestions does not work; it will leave the trailing '\n' character in the buffer,
+// which will desynchronize all of the following input. It's possible to avoid this by adding a call to std::std::cin.ignore,
 // but this would still miss the error due to trailing garbage. If you're doing line oriented input, stick with getline, and use std::istringstream for any necessary conversions.
 
 // http://www.cplusplus.com/forum/articles/6046/
 // Using the >> operator opens you up to alot of problems.
 // A more elegant solution, and much easier to use is the getline(); function. The example below shows you how to load information, and convert it between types.
 //  string input = "";
-//     getline(cin, input);
+//     getline(std::cin, input);
 //   stringstream myStream(input);
 //   if (myStream >> myNumber)
 //   break;
-//   cout << "Invalid number, please try again" << endl;
-// (if your having problems, before the 2nd getline(); try putting cin.clear();)
+//   std::cout << "Invalid number, please try again" << std::endl;
+// (if your having problems, before the 2nd getline(); try putting std::cin.clear();)
 
 
 // Почему getline здесь быстрее, чем scanf?
@@ -2845,10 +2845,10 @@ PICO_STATUS openDevice(UNIT *unit)
 
 /*
 
-    ifstream fset(settingFile); // открыли файл для чтения // ofstream output_file("students.data", ios::binary);
+    std::ifstream fset(settingFile); // открыли файл для чтения // ofstream output_file("students.data", ios::binary);
     if (!fset.is_open()) // если файл не открыт
     {
-        cout << "Файл не может быть открыт!\n"; // сообщить об этом
+        std::cout << "Файл не может быть открыт!\n"; // сообщить об этом
     }
     else
     {
@@ -2873,17 +2873,17 @@ PICO_STATUS openDevice(UNIT *unit)
 
     // еще вариант https://www.geeksforgeeks.org/file-handling-c-classes/?ref=lbp :
 //    #include <fstream>
-    ifstream fileLoadSet;
-    fileLoadSet.open(settingFile, ios::in | ios::binary);
+    std::ifstream fileLoadSet;
+    fileLoadSet.open(settingFile, std::ios::in | std::ios::binary);
     if(fileLoadSet) // или if (fset.is_open())
     {
-        cout << "Reading setting from " << settingFile << endl;
+        std::cout << "Reading setting from " << settingFile << std::endl;
         fileLoadSet.read(reinterpret_cast<char*> (&mySetting), sizeof(ps3000aSetting)); // (char*) or sizeof(ps3000aSetting)
         fileLoadSet.close();
     }
     else
     {
-        cout << "Setting file is not found. Loading of default setting" << endl;
+        std::cout << "Setting file is not found. Loading of default setting" << std::endl;
 
         restoreParameters();
 
@@ -3408,7 +3408,7 @@ int main(void)
                 // Request the number of required blocks (1 block = 25000 frames, 1 frames = 1024 samples)
                 printf("\n");
                 printf("Enter the number of blocks (each block is %u frames): ", mySetting.nWaveForms); // %lu (unsigned long)
-                cin >> nBlocks;
+                std::cin >> nBlocks;
 //                fflush(stdin);
 //                scanf_s("%lud", &nBlocks);
 			    collectRapidBlock(&unit, nBlocks);
